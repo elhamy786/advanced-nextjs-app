@@ -39,18 +39,19 @@ export default async function DogDetail({ params }: DogDetailProps) {
         style={{ objectFit: 'cover' }} // Maintain aspect ratio
       />
       <p className="text-lg">
-        Dogs are known as man's best friend due to their loyalty and companionship. 
-        They have been domesticated for thousands of years, serving various roles 
-        such as working animals, service companions, and beloved pets. 
-        With a wide range of breeds, dogs vary greatly in size, appearance, and temperament. 
-        They are highly social animals, thriving on interaction with humans and other dogs. 
-        Regular exercise and mental stimulation are essential for their well-being. 
-        Dogs communicate through barks, growls, and body language, allowing them 
-        to express their feelings and needs. Training is crucial for good behavior 
-        and can enhance the bond between dogs and their owners. 
-        Whether as loyal companions or skilled working animals, dogs enrich our lives 
-        with their unwavering love and loyalty.
-      </p>
+  Dogs are known as man&rsquo;s best friend due to their loyalty and companionship. 
+  They have been domesticated for thousands of years, serving various roles 
+  such as working animals, service companions, and beloved pets. 
+  With a wide range of breeds, dogs vary greatly in size, appearance, and temperament. 
+  They are highly social animals, thriving on interaction with humans and other dogs. 
+  Regular exercise and mental stimulation are essential for their well-being. 
+  Dogs communicate through barks, growls, and body language, allowing them 
+  to express their feelings and needs. Training is crucial for good behavior 
+  and can enhance the bond between dogs and their owners. 
+  Whether as loyal companions or skilled working animals, dogs enrich our lives 
+  with their unwavering love and loyalty.
+</p>
+
     </div>
   );
 }
