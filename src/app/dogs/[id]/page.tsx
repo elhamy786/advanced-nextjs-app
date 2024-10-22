@@ -1,5 +1,6 @@
 // src/app/dogs/[id]/page.tsx
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 
 interface DogDetailProps {
   params: {
@@ -12,10 +13,15 @@ export default async function DogDetail({ params }: DogDetailProps) {
 
   // Fetch dog data from the API
   const res = await fetch(`http://localhost:3000/api/dogs`); // Adjust the URL as needed
+
+  if (!res.ok) {
+    return notFound(); // Return a 404 page if the fetch fails
+  }
+
   const dogsData = await res.json();
 
   // If the ID is invalid or doesn't exist, return a 404 page
-  if (isNaN(dogId) || dogId >= dogsData.length) {
+  if (isNaN(dogId) || dogId < 0 || dogId >= dogsData.length) {
     return notFound();
   }
 
@@ -24,11 +30,13 @@ export default async function DogDetail({ params }: DogDetailProps) {
   return (
     <div className="text-center p-6">
       <h1 className="text-4xl font-bold mb-4">{description}</h1>
-      <img
+      <Image
         src={image}
         alt={`Dog ${dogId}`}
         className="rounded shadow-lg mx-auto mb-4"
-        style={{ width: '400px', height: '400px', objectFit: 'cover' }}
+        width={400} // Set the width for Image component
+        height={400} // Set the height for Image component
+        style={{ objectFit: 'cover' }} // Maintain aspect ratio
       />
       <p className="text-lg">
         Dogs are known as man's best friend due to their loyalty and companionship. 
