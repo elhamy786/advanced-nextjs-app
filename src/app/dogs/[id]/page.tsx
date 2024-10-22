@@ -9,20 +9,19 @@ interface DogDetailProps {
 
 export default async function DogDetail({ params }: DogDetailProps) {
   const dogId = parseInt(params.id, 10); // Extract the dog ID from the URL
-  
+  console.log("Dog ID from params:", dogId);
+
   let dogsData;
 
   // Try fetching dog data from the API
   try {
     const res = await fetch(`http://localhost:3000/api/dogs`);
-    
     if (!res.ok) {
       console.error("Failed to fetch data from the API");
       return notFound(); // Return a 404 page if the fetch fails
     }
-    
     dogsData = await res.json(); // Parse JSON data
-    
+    console.log("API Response:", dogsData);
   } catch (error) {
     console.error("Error fetching or parsing data:", error);
     return notFound(); // Return a 404 page on error
@@ -30,11 +29,12 @@ export default async function DogDetail({ params }: DogDetailProps) {
 
   // If the ID is invalid or doesn't exist, return a 404 page
   if (isNaN(dogId) || dogId < 0 || dogId >= dogsData.length) {
-    console.error("Invalid dog ID:", dogId);
+    console.error("Invalid dog ID or ID does not exist:", dogId);
     return notFound();
   }
 
   const { image, description } = dogsData[dogId]; // Get dog info from the fetched data
+  console.log("Selected Dog Data:", { image, description });
 
   return (
     <div className="text-center p-6">
