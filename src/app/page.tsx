@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link'; // Import Link for routing
+import Image from 'next/image'; // Import Image from next/image
 
 const dogDescriptions = [
   "Golden Retriever: A friendly, intelligent breed known for its gentle temperament.",
@@ -46,7 +47,13 @@ export default function DogGallery() {
         {dogs.map((dog, index) => (
           <Link key={index} href={`/dogs/${index}`}>
             <div className="card cursor-pointer">
-              <img src={dog} alt={`Dog ${index + 1}`} className="w-full h-64 object-cover" />
+              <Image
+                src={dog}
+                alt={`Dog ${index + 1}`}
+                className="w-full h-64 object-cover"
+                width={400} // Set a width for the image
+                height={256} // Set a height for the image
+              />
               <div className="p-4">
                 <h2 className="card-title">Dog Breed {index + 1}</h2>
                 <p className="card-description">{dogDescriptions[index % dogDescriptions.length]}</p>

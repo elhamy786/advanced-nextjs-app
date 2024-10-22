@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 
 interface DogDetailProps {
   params: {
@@ -22,13 +23,14 @@ const dogDescriptions = [
 export default function DogDetail({ params }: DogDetailProps) {
   const dogId = parseInt(params.id, 10); // Extract the dog ID from the URL
 
-  if (isNaN(dogId) || dogId >= dogDescriptions.length) {
+  if (isNaN(dogId) || dogId < 0 || dogId >= dogDescriptions.length) {
     return notFound();
   }
 
   // Generate the dog image URL dynamically (replace with actual API data if necessary)
-  const dogImageUrl = `https://dog.ceo/api/breeds/image/random/${dogId}`;
+  const dogImageUrl = `https://dog.ceo/api/breeds/image/random`; // Fetch a random image
 
+  // Simulated dog information
   const dogInfo = `
     The breed is known for its loyalty.
     It has a lifespan of 10-15 years.
@@ -45,16 +47,18 @@ export default function DogDetail({ params }: DogDetailProps) {
   return (
     <div className="text-center p-6">
       <h1 className="text-4xl font-bold mb-4">{dogDescriptions[dogId]}</h1>
-      <img
+      <Image
         src={dogImageUrl}
         alt={`Dog ${dogId}`}
         className="rounded shadow-lg mx-auto mb-4"
-        style={{ width: '400px', height: '400px', objectFit: 'cover' }}
+        width={400} // Set the width
+        height={400} // Set the height
+        style={{ objectFit: 'cover' }} // Use style for objectFit
       />
       <p className="text-lg">
-        {dogInfo.split('\n').map((line, index) => (
+        {dogInfo.trim().split('\n').map((line, index) => (
           <span key={index}>
-            {line}
+            {line.trim().replace(/"/g, '&quot;').replace(/'/g, '&apos;')} {/* Escape quotes */}
             <br />
           </span>
         ))}
