@@ -37,7 +37,7 @@ export default async function DogDetail({ params }: DogDetailProps) {
 
   return (
     <div className="text-center p-6">
-      <h1 className="text-4xl font-bold mb-4">Dog #{dogId + 1}</h1> {/* Example static description */}
+      <h1 className="text-4xl font-bold mb-4">Dog #{dogId + 1}</h1>
       <Image
         src={image}
         alt={`Dog ${dogId}`}
@@ -47,7 +47,7 @@ export default async function DogDetail({ params }: DogDetailProps) {
         style={{ objectFit: 'cover' }}
       />
       <p className="text-lg">
-        Dogs are known as man's best friend due to their loyalty and companionship. 
+        Dogs are known as man&apos;s best friend due to their loyalty and companionship. 
         They have been domesticated for thousands of years, serving various roles 
         such as working animals, service companions, and beloved pets. 
         With a wide range of breeds, dogs vary greatly in size, appearance, and temperament. 
@@ -61,4 +61,4 @@ export default async function DogDetail({ params }: DogDetailProps) {
       </p>
     </div>
   );
-}
+}  
