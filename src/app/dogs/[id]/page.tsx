@@ -8,31 +8,36 @@ interface DogDetailProps {
 }
 
 export default async function DogDetail({ params }: DogDetailProps) {
-  const dogId = parseInt(params.id, 10);
+  const dogId = parseInt(params.id, 10);  // Convert id to integer
 
-  let dogsData;
+  let dogsData: { image: string }[] | undefined;
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dogs`);
+    // Fetch data from your API route
+    const res = await fetch(`https://dog.ceo/api/breeds/image/random/20`);
+    
     if (!res.ok) {
       console.error("Failed to fetch data from the API:", res.status, res.statusText);
       return notFound();
     }
-    dogsData = await res.json();
+
+    const data = await res.json();  // Parse JSON response
+    dogsData = data.message.map((image: string) => ({ image })); // Restructure the data
   } catch (error) {
     console.error("Error fetching or parsing data:", error);
-    return notFound();
+    return notFound();  // Return notFound if the API call fails
   }
 
-  if (isNaN(dogId) || dogId < 0 || dogId >= dogsData.length) {
+  if (isNaN(dogId) || dogId < 0 || !dogsData || dogId >= dogsData.length) {
     console.error("Invalid dog ID or ID does not exist:", dogId);
-    return notFound();
+    return notFound();  // Return notFound for invalid ID
   }
 
-  const { image, description } = dogsData[dogId];
+  // Get the dog image
+  const { image } = dogsData[dogId];
 
   return (
     <div className="text-center p-6">
-      <h1 className="text-4xl font-bold mb-4">{description}</h1>
+      <h1 className="text-4xl font-bold mb-4">Dog #{dogId + 1}</h1> {/* Example static description */}
       <Image
         src={image}
         alt={`Dog ${dogId}`}
@@ -42,7 +47,7 @@ export default async function DogDetail({ params }: DogDetailProps) {
         style={{ objectFit: 'cover' }}
       />
       <p className="text-lg">
-        Dogs are known as mans best friend due to their loyalty and companionship. 
+        Dogs are known as man's best friend due to their loyalty and companionship. 
         They have been domesticated for thousands of years, serving various roles 
         such as working animals, service companions, and beloved pets. 
         With a wide range of breeds, dogs vary greatly in size, appearance, and temperament. 
