@@ -15,14 +15,32 @@ const dogDescriptions = [
 ];
 
 export async function GET() {
-  const res = await fetch('https://dog.ceo/api/breeds/image/random/20');
-  const data = await res.json();
+  try {
+    const res = await fetch('https://dog.ceo/api/breeds/image/random/20');
 
-  // Combine images with descriptions
-  const dogsWithInfo = data.message.map((image: string, index: number) => ({
-    image,
-    description: dogDescriptions[index % dogDescriptions.length], // Use modulo to cycle through descriptions
-  }));
+    // Check if the response is okay
+    if (!res.ok) {
+      console.error("Failed to fetch from Dog API:", res.statusText);
+      return NextResponse.error();
+    }
 
-  return NextResponse.json(dogsWithInfo);
+    const data = await res.json();
+
+    // Check if the data is in the expected format
+    if (!data.message || !Array.isArray(data.message)) {
+      console.error("Unexpected data format:", data);
+      return NextResponse.error();
+    }
+
+    // Combine images with descriptions
+    const dogsWithInfo = data.message.map((image: string, index: number) => ({
+      image,
+      description: dogDescriptions[index % dogDescriptions.length], // Use modulo to cycle through descriptions
+    }));
+
+    return NextResponse.json(dogsWithInfo);
+  } catch (error) {
+    console.error("Error fetching dog data:", error);
+    return NextResponse.error();
+  }
 }
