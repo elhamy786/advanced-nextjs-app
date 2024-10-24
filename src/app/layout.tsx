@@ -1,5 +1,4 @@
-// src/app/layout.tsx
-import '../styles/globals.css';  // Corrected import path
+import '../styles/globals.css';
 
 export const metadata = {
   title: 'Cute Dog Gallery',

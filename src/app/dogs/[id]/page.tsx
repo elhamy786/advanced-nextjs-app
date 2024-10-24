@@ -8,31 +8,29 @@ interface DogDetailProps {
 }
 
 export default async function DogDetail({ params }: DogDetailProps) {
-  const dogId = parseInt(params.id, 10);  // Convert id to integer
+  const dogId = parseInt(params.id, 10);
 
   let dogsData: { image: string }[] | undefined;
   try {
-    // Fetch data from your API route
     const res = await fetch(`https://dog.ceo/api/breeds/image/random/20`);
-    
+ 
     if (!res.ok) {
       console.error("Failed to fetch data from the API:", res.status, res.statusText);
       return notFound();
     }
 
-    const data = await res.json();  // Parse JSON response
-    dogsData = data.message.map((image: string) => ({ image })); // Restructure the data
+    const data = await res.json();
+    dogsData = data.message.map((image: string) => ({ image }));
   } catch (error) {
     console.error("Error fetching or parsing data:", error);
-    return notFound();  // Return notFound if the API call fails
+    return notFound();
   }
 
   if (isNaN(dogId) || dogId < 0 || !dogsData || dogId >= dogsData.length) {
     console.error("Invalid dog ID or ID does not exist:", dogId);
-    return notFound();  // Return notFound for invalid ID
+    return notFound();
   }
 
-  // Get the dog image
   const { image } = dogsData[dogId];
 
   return (

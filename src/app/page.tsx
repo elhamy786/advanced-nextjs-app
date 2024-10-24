@@ -1,8 +1,8 @@
 "use client"; // Client Component
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link'; // Import Link for routing
-import Image from 'next/image'; // Import Image from next/image
+import Link from 'next/link';
+import Image from 'next/image';
 
 const dogDescriptions = [
   "Golden Retriever: A friendly, intelligent breed known for its gentle temperament.",
@@ -32,7 +32,7 @@ export default function DogGallery() {
 
   useEffect(() => {
     const fetchDogs = async () => {
-      const response = await fetch('https://dog.ceo/api/breeds/image/random/20'); // Fetch 20 images
+      const response = await fetch('https://dog.ceo/api/breeds/image/random/36');
       const data = await response.json();
       setDogs(data.message);
     };
@@ -51,8 +51,8 @@ export default function DogGallery() {
                 src={dog}
                 alt={`Dog ${index + 1}`}
                 className="w-full h-64 object-cover"
-                width={400} // Set a width for the image
-                height={256} // Set a height for the image
+                width={400}
+                height={256}
               />
               <div className="p-4">
                 <h2 className="card-title">Dog Breed {index + 1}</h2>

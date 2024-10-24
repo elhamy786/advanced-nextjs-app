@@ -3,63 +3,62 @@
 @tailwind utilities;
 
 body {
-  background: linear-gradient(to right, #a4a3a3, #ffb6c1); /* Black to light pink gradient background */
-  font-family: 'Poppins', sans-serif; /* Ensure you have imported the font */
-  color: #000000; /* White text for contrast */
+  background: linear-gradient(to right, #a4a3a3, #ffb6c1);
+  font-family: 'Poppins', sans-serif;
+  color: #000000;
 }
 
 h1 {
-  text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.7); /* Light pink shadow for a soft glow */
-  font-size: 3rem; /* Larger heading for emphasis */
-  margin-bottom: 20px; /* Space below the heading */
+  text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.7);
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white for card background */
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Deeper shadow for more depth */
-  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Elevate the card on hover */
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6); /* Stronger shadow on hover for emphasis */
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
 }
 
 .card img {
-  border-bottom: 4px solid #ff69b4; /* Light pink border under the image */
-  transition: transform 0.3s; /* Add transition to image */
+  border-bottom: 4px solid #ff69b4;
+  transition: transform 0.3s;
 }
 
 .card img:hover {
-  transform: scale(1.05); /* Scale image slightly on hover */
+  transform: scale(1.05);
 }
 
 .card-title {
   font-size: 1.5rem;
   margin-bottom: 10px;
-  color: #ff69b4; /* Light pink color for titles */
-  text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.5); /* Soft shadow for title */
+  color: #ff69b4;
+  text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.5);
 }
 
 .card-description {
-  color: #ffffff; /* White for descriptions for readability */
+  color: #ffffff;
   line-height: 1.5;
-  opacity: 0.9; /* Slightly transparent for a softer look */
-  padding: 0 15px; /* Add some horizontal padding */
+  opacity: 0.9;
+  padding: 0 15px;
 }
 
 .card:hover .card-description {
-  opacity: 1; /* Fully visible on hover */
+  opacity: 1;
 }
 
-/* Additional magical styles */
 .magical-effect {
-  background: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
-  border-radius: 10px; /* Rounded corners for a softer look */
-  padding: 15px; /* Padding for inner content */
-  backdrop-filter: blur(10px); /* Blur effect for a dreamy look */
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  backdrop-filter: blur(10px);
 }
 
 
