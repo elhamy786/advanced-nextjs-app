@@ -10,12 +10,11 @@ interface DogDetailProps {
 export default async function DogDetail({ params }: DogDetailProps) {
   const dogId = parseInt(params.id, 10);
 
-  // Fetch data using a relative URL
   let dogsData;
   try {
-    const res = await fetch(`http://localhost:3000/api/dogs`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dogs`);
     if (!res.ok) {
-      console.error("Failed to fetch data from the API");
+      console.error("Failed to fetch data from the API:", res.status, res.statusText);
       return notFound();
     }
     dogsData = await res.json();
